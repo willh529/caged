@@ -1,4 +1,5 @@
 #include "pebble.h"
+#include "stdlib.h"
 
 #define MATH_PI 3.141592653589793238462
 #define NUM_DISCS 1
@@ -72,10 +73,19 @@ static void disc_update(Disc *disc) {
     disc->vel.y = -disc->vel.y * e;
   }
   
-  if((disc->pos.y <  frame.size.h - 10 && disc->pos.y > frame.size.h - 30) && (disc->pos.x < frame.size.w / 2 + 10 && disc->pos.x > frame.size.w / 2 - 10))
+  if((disc->pos.y <  frame.size.h - 10 && disc->pos.y > frame.size.h - 40) && (disc->pos.x < frame.size.w / 2 + 25 && disc->pos.x > frame.size.w / 2 - 13))
   {
-    disc->pos.x = frame.size.w / 2;
-    disc->pos.y = frame.size.h / 2;
+    int x = rand() % 144;
+    int y = rand() % 168;
+    
+    while((y <  frame.size.h - 10 && y > frame.size.h - 40) && (x < frame.size.w / 2 + 25 && x > frame.size.w / 2 - 13))
+    {
+      x = rand() % 144;
+      y = rand() % 168;
+    }
+    
+    disc->pos.x = x;
+    disc->pos.y = y;
   }
   
   disc->pos.x += disc->vel.x;
