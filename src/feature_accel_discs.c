@@ -71,6 +71,9 @@ static void disc_update(Disc *disc) {
     || (disc->pos.y + disc->radius > frame.size.h && disc->vel.y > 0)) {
     disc->vel.y = -disc->vel.y * e;
   }
+  
+  if((disc->pos.y ))
+  
   disc->pos.x += disc->vel.x;
   disc->pos.y += disc->vel.y;
 }
