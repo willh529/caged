@@ -10,8 +10,8 @@
 #define ACCEL_STEP_MS 50
 
 typedef struct Vec2d {
-  double x;
-  double y;
+  double x;   
+  double y; 
 } Vec2d;
 
 typedef struct Disc {
