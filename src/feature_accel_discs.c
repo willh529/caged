@@ -1,5 +1,7 @@
 #include "pebble.h"
 #include "stdlib.h"
+#include "stdio.h"
+#include "string.h"
 
 #define MATH_PI 3.141592653589793238462
 #define NUM_DISCS 1
@@ -36,6 +38,8 @@ static Layer *disc_layer;
 static AppTimer *timer;
 
 static int score = 0;
+static char score_buffer[11] = "Score: 0";
+
 
 static double disc_calc_mass(Disc *disc) {
   return MATH_PI * disc->radius * disc->radius * DISC_DENSITY;
@@ -89,6 +93,14 @@ static void disc_update(Disc *disc) {
     
     disc->pos.x = x;
     disc->pos.y = y;
+    
+    score++;
+    
+    int tmp;
+    
+    snprintf(score_buffer, 10, "Score: %i", score);
+      
+    text_layer_set_text(s_score_layer, score_buffer);
   }
   
   disc->pos.x += disc->vel.x;
@@ -134,7 +146,7 @@ static void window_load(Window *window) {
   s_score_layer = text_layer_create(GRect(38, 20, 65, 50));
   text_layer_set_background_color(s_score_layer, GColorClear);
   text_layer_set_text_color(s_score_layer, GColorBlack);
-  text_layer_set_text(s_score_layer, "Score: ");
+  text_layer_set_text(s_score_layer, score_buffer);
 
   layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_score_layer));
   
