@@ -85,7 +85,7 @@ static void disc_update(Disc *disc) {
     int x = rand() % 144;
     int y = rand() % 168;
     
-    while((y <  frame.size.h - 10 && y > frame.size.h - 40) && (x < frame.size.w / 2 + 25 && x > frame.size.w / 2 - 13))
+    while((y <  frame.size.h - 10 && y > frame.size.h - 40) && (y < 0 && y > frame.size.h) && (x < frame.size.w / 2 + 25 && x > frame.size.w / 2 - 13) && (x < 0 && x > frame.size.w))
     {
       x = rand() % 144;
       y = rand() % 168;
