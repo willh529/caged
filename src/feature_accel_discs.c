@@ -27,12 +27,15 @@ static Window *window;
 
 static BitmapLayer *s_background_layer;
 static GBitmap *s_background_bitmap;
+static TextLayer *s_score_layer;
 
 static GRect window_frame;
 
 static Layer *disc_layer;
 
 static AppTimer *timer;
+
+static int score = 0;
 
 static double disc_calc_mass(Disc *disc) {
   return MATH_PI * disc->radius * disc->radius * DISC_DENSITY;
@@ -128,6 +131,16 @@ static void window_load(Window *window) {
   bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
   layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_background_layer));
 
+  s_score_layer = text_layer_create(GRect(38, 20, 65, 50));
+  text_layer_set_background_color(s_score_layer, GColorClear);
+  text_layer_set_text_color(s_score_layer, GColorBlack);
+  text_layer_set_text(s_score_layer, "Score: ");
+
+  layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_score_layer));
+  
+  text_layer_set_font(s_score_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+  text_layer_set_text_alignment(s_score_layer, GTextAlignmentCenter);
+  
   disc_layer = layer_create(frame);
   layer_set_update_proc(disc_layer, disc_layer_update_callback);
   layer_add_child(window_layer, disc_layer);
@@ -143,8 +156,10 @@ static void window_unload(Window *window) {
 
   // Destroy BitmapLayer
   bitmap_layer_destroy(s_background_layer);
+  text_layer_destroy(s_score_layer);
   
   layer_destroy(disc_layer);
+  
 }
 
 static void init(void) {
