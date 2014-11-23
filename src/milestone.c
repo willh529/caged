@@ -32,6 +32,9 @@ static void initialise_ui(void) {
   action_bar_layer_add_to_window(s_actionbarlayer_1, s_window);
   action_bar_layer_set_background_color(s_actionbarlayer_1, GColorBlack);
   action_bar_layer_set_icon(s_actionbarlayer_1, BUTTON_ID_SELECT, s_res_image_arrow);
+  action_bar_layer_set_click_config_provider(s_actionbarlayer_1, click_config_provider);
+
+
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_actionbarlayer_1);
 }
 

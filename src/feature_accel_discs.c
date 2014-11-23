@@ -38,7 +38,7 @@ static Layer *disc_layer;
 
 static AppTimer *timer;
 
-static int score = 10;
+static int score = 0;
 static char score_buffer[12] = "Score:\n0";
 
 
