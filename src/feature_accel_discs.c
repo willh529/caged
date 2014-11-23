@@ -1,4 +1,5 @@
 #include "pebble.h"
+#include "milestone.h"
 #include "stdlib.h"
 #include "stdio.h"
 #include "string.h"
@@ -37,7 +38,7 @@ static Layer *disc_layer;
 
 static AppTimer *timer;
 
-static int score = 0;
+static int score = 10;
 static char score_buffer[12] = "Score:\n0";
 
 
@@ -129,7 +130,14 @@ static void timer_callback(void *data) {
 
   layer_mark_dirty(disc_layer);
 
-  timer = app_timer_register(ACCEL_STEP_MS, timer_callback, NULL);
+  if(score != 100)
+  {
+    timer = app_timer_register(ACCEL_STEP_MS, timer_callback, NULL);
+  }
+  else
+  {
+    show_milestone();
+  }
 }
 
 static void window_load(Window *window) {
