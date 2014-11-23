@@ -20,7 +20,7 @@ typedef struct Disc {
 
 static Disc discs[NUM_DISCS];
 
-static double next_radius = 3;
+static double next_radius = 8;
 
 static Window *window;
 
@@ -72,7 +72,11 @@ static void disc_update(Disc *disc) {
     disc->vel.y = -disc->vel.y * e;
   }
   
-  if((disc->pos.y ))
+  if((disc->pos.y <  frame.size.h - 10 && disc->pos.y > frame.size.h - 30) && (disc->pos.x < frame.size.w / 2 + 10 && disc->pos.x > frame.size.w / 2 - 10))
+  {
+    disc->pos.x = frame.size.w / 2;
+    disc->pos.y = frame.size.h / 2;
+  }
   
   disc->pos.x += disc->vel.x;
   disc->pos.y += disc->vel.y;
