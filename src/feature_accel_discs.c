@@ -38,7 +38,7 @@ static Layer *disc_layer;
 static AppTimer *timer;
 
 static int score = 0;
-static char score_buffer[11] = "Score: 0";
+static char score_buffer[12] = "Score:\n0";
 
 
 static double disc_calc_mass(Disc *disc) {
@@ -95,10 +95,8 @@ static void disc_update(Disc *disc) {
     disc->pos.y = y;
     
     score++;
-    
-    int tmp;
-    
-    snprintf(score_buffer, 10, "Score: %i", score);
+        
+    snprintf(score_buffer, 12, "Score:\n%i", score);
       
     text_layer_set_text(s_score_layer, score_buffer);
   }
@@ -143,7 +141,7 @@ static void window_load(Window *window) {
   bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
   layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_background_layer));
 
-  s_score_layer = text_layer_create(GRect(38, 20, 65, 50));
+  s_score_layer = text_layer_create(GRect(40, 0, 70, 50));
   text_layer_set_background_color(s_score_layer, GColorClear);
   text_layer_set_text_color(s_score_layer, GColorBlack);
   text_layer_set_text(s_score_layer, score_buffer);
