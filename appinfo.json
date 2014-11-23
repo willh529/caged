@@ -1,0 +1,25 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "willh529@gmail.com",
+    "longName": "AccelerometerTest",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/dff388404ba029fefea3e8024c5bb8e9.png",
+                "name": "IMAGE_NICK",
+                "type": "png"
+            }
+        ]
+    },
+    "shortName": "AccelerometerTest",
+    "uuid": "67d27840-956a-4b09-9b8d-9cceb3ea41e3",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
